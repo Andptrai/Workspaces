@@ -1,0 +1,309 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Đăng ký chuyến bay</title>
+    <style type="text/css">
+        label {
+            display: block;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+        }
+        
+        div.fl {
+            float: left;
+            margin-right: 0.6em;
+        }
+        
+        select {
+            width: 11em;
+        }
+        
+        input[type="text"].date {
+            width: 3em;
+        }
+        
+        input[type="text"].year {
+            width: 4em;
+        }
+        
+        input[type="text"].totalPrice {
+            width: 16em;
+        }
+        
+        input[type="text"].firstName {
+            width: 16em;
+        }
+        
+        input[type="text"].lastName {
+            width: 6em;
+        }
+        
+        input[type="text"].address {
+            width: 23em;
+        }
+        
+        input[type="text"].idCard {
+            width: 23em;
+        }
+        
+        input[type="text"].mobile {
+            width: 11em;
+        }
+        
+        input[type="text"].email {
+            width: 11em;
+        }
+        
+        input[type="text"].creditName {
+            width: 23em;
+        }
+        
+        input[type="text"].creditNo {
+            width: 16em;
+        }
+        
+        input[type="text"].creditExpire {
+            width: 6em;
+        }
+        
+        div#mainForm {
+            border:
+        }
+        
+        div#submit {
+            padding-top: 0.2em;
+            clear: both;
+        }
+        
+        div#sum {
+            padding-top: 0.3em;
+            clear: both;
+        }
+        
+        div#left {
+            float: left;
+        }
+        
+        div#right {
+            float: right;
+        }
+        
+        div.sep {
+            float: left;
+            margin-left: 0.0em;
+            margin-right: 0.6em;
+            padding-top: 1.8em;
+        }
+        
+        div.simple {
+            float: left;
+            padding-top: 0.5em;
+        }
+        
+        fieldset {
+            /*width: 12em;*/
+            width: 17em;
+            margin-bottom: 0.2em;
+        }
+    </style>
+    <!-- Nhập javascript xử lý form vào bên đưới đây -->
+
+    <!-- Kết thúc javascript xử lý form -->
+</head>
+
+<body>
+    <form>
+        <div id="mainForm">
+            <div id="left">
+                <fieldset id="groupCalculate">
+                    <legend>Hãng hàng không</legend>
+                    <div>
+                        <div class="fl" align="center">
+                            <img src="images/Plane.png" width="70%" />
+                        </div>
+                    </div>
+                    <div></div>
+                </fieldset>
+                <fieldset id="groupFlight">
+                    <legend>Chuyến bay</legend>
+                    <div class="fl">
+                        <label for="from">Đi từ:</label>
+                        <select id="from" name="from">
+				<option value="-1">Chọn nơi đi</option>
+				<option value="SGN">Sài Gòn</option>
+				<option value="HN">Hà Nội</option>
+				<option value="DN">Đà Nẵng</option>
+                <option value="DN">Côn Đảo</option>
+			</select>
+                    </div>
+                    <div class="fl">
+                        <label for="to">Đến:</label>
+                        <select id="to" name="to">
+				<option value="-1">Chọn nơi đến</option>
+				<option value="SGN">Sài gòn</option>
+				<option value="HN">Hà Nội</option>
+				<option value="DN">Đà Nẵng</option>
+                <option value="DN">Côn Đảo</option>
+			</select>
+                    </div>
+                    <div class="simple">
+                        Một chiều: <input id="direction_1" type="radio" name="direction" value="oneway" /> Khứ hồi: <input id="direction_2" type="radio" name="direction" value="return" checked="checked" />
+                    </div>
+                </fieldset>
+                <fieldset id="groupDateTravel">
+                    <legend>Ngày đi</legend>
+                    <div class="fl">
+                        <label for="travelDay">Ngày</label>
+                        <select id="travelDay" name="travelDay" style="width:50px">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected>29</option>
+			</select>
+                    </div>
+                    <div class="sep">/</div>
+                    <div class="fl">
+                        <label for="travelMonth">Tháng</label>
+                        <select id="travelMonth" name="travelMonth" style="width:80px">
+				<option value="1">Tháng 1</option>
+				<option value="2">Tháng 2</option>
+				<option value="3" selected>Tháng 3</option>
+			</select>
+                    </div>
+                    <div class="sep">/</div>
+                    <div class="fl">
+                        <label for="travelYear">Năm</label>
+                        <select id="travelYear" name="travelYear" style="width:70px">
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+                    </div>
+                </fieldset>
+                <fieldset id="groupDateReturn">
+                    <legend>Ngày về</legend>
+                    <div class="fl">
+                        <label for="returnDay">Ngày</label>
+                        <select id="returnDay" name="returnDay" style="width:50px">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected>30</option>
+			</select>
+                    </div>
+                    <div class="sep">/</div>
+                    <div class="fl">
+                        <label for="returnMonth">Tháng</label>
+                        <select id="returnMonth" name="returnMonth" style="width:80px">
+				<option value="1">Tháng 1</option>
+				<option value="2">Tháng 2</option>
+				<option value="3" selected>Tháng 3</option>
+			</select>
+                    </div>
+                    <div class="sep">/</div>
+                    <div class="fl">
+                        <label for="returnYear">Năm</label>
+                        <select id="returnYear" name="returnYear" style="width:70px">
+				<option value="2018">2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+			</select>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div id="left">
+                <fieldset id="groupPassenger">
+                    <legend>Thông tin hành khách</legend>
+                    <div class="fl">
+                        <label for="passengerLastName">Họ (*)</label>
+                        <input type="text" id="passengerLastName" name="passengerLastName" class="lastName" />
+                    </div>
+                    <div class="fl">
+                        <label for="passengerFirstName">Tên(*)</label>
+                        <input type="text" id="passengerFirstName" name="passengerFirstName" class="firstName" />
+                    </div>
+                    <div class="fl">
+                        <label for="idCard">Số chứng minh thư(*)</label>
+                        <input type="text" id="idCard" name="idCard" class="idCard" />
+                    </div>
+                    <div class="fl">
+                        <label for="idGT">Giới tính (*)</label>
+                        <span>Nam <input type="radio" id="idGT" name="idGT" class="idGT" checked/></span>
+                        <span>Nữ <input type="radio" id="idGT" name="idGT" class="idGT" /></span>
+                    </div>
+                    <div class="fl">
+                        <label for="address">Địa chỉ(*)</label>
+                        <input type="text" id="address" name="address" class="address" />
+                    </div>
+                    <div class="fl">
+                        <label for="mobile">Điện thoại</label>
+                        <input type="text" id="mobile" name="mobile" class="mobile" />
+                    </div>
+                    <div class="fl">
+                        <label for="address">Email</label>
+                        <input type="text" id="email" name="email" class="email" />
+                    </div>
+                </fieldset>
+                <fieldset id="groupPayment">
+                    <legend>Thông tin thanh toán</legend>
+                    <div class="fl">
+                        <label for="creditName">Họ tên chủ thẻ</label>
+                        <input type="text" id="creditName" name="creditName" class="creditName" />
+                    </div>
+                    <div class="fl">
+                        <label for="creditType">Loại thẻ</label>
+                        <select id="creditType" name="creditType">
+				<option value="VISA">VISA</option>
+				<option value="MASTER">Master Card</option>
+				<option value="AMEX">American Express</option>
+			</select>
+                    </div>
+                    <div class="fl">
+                        <label for="creditNo">Số thẻ</label>
+                        <input type="text" id="creditNo" name="creditNo" class="creditNo" />
+                    </div>
+                    <div class="fl">
+                        <label for="creditExpire">Thời hạn</label>
+                        <input type="text" id="creditExpire" name="creditExpire" class="creditExpire" />
+                    </div>
+                </fieldset>
+            </div>
+            <div id="right">
+                <fieldset id="groupPrice">
+                    <div class="fl price">
+                        Tạm tính: <span id="price">(VNĐ)	</span>
+                    </div>
+                    <div id="sum">
+                        <input type="button" value="Tính tiền" />
+                        <input type="text" class="totalPrice" value="1.000.000 đồng" />
+                    </div>
+                </fieldset>
+                <fieldset id="groupSubmit">
+                    <div id="submit">
+                        <input type="submit" value="Đặt vé" />
+                        <input type="reset" value="Nhập lại" />
+                    </div>
+                </fieldset>
+                <fieldset id="groupDraw">
+                    <legend>Vẽ hình</legend>
+                    <div class="fl">
+                        <label for="diamondSize">Kích thước <i>(n nguyên, 0&lt;n&lt;6 )</i></label>
+                        <label><i> {hình vẽ minh hoạ cho n = 3}</i></label>
+                        <input type="text" id="diamondSize" name="diamondSize" class="diamondSize" value="3" />
+                        <input type="button" value="Vẽ và tính" />
+                    </div>
+                    <div class="fl">
+                        <img src="images/diamond.png" />
+                    </div>
+                </fieldset>
+                <fieldset id="MSSV">
+                    <div><i>Họ tên: Nguyễn Văn A </i></div>
+                    <div><i>MSSV: 123456789 </i></div>
+                </fieldset>
+            </div>
+        </div>
+
+    </form>
+</body>
+
+</html>

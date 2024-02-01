@@ -1,0 +1,206 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Đăng ký bệnh nhân</title>
+
+    <!-- Javascript viết tại đây -->
+    <script type="text/javascript" charset="utf-8">
+    </script>
+
+    <!-- CSS internal -->
+    <style type="text/css">
+        form {
+            width: 30em;
+            border-style: dotted;
+            border-width: thin;
+            border-color: red;
+            padding: 1em;
+        }
+        
+        .form_label {
+            width: 12em;
+            float: left;
+        }
+        
+        .form {
+            clear: left;
+            margin-bottom: 1.5em;
+        }
+        
+        .form_footer {
+            clear: left;
+            padding-top: 1.5em;
+        }
+        
+        .form_line_error {
+            border-width: thin;
+        }
+        
+        .form_line {
+            clear: left;
+            padding-top: 0.3em;
+            padding-bottom: 0.3em;
+        }
+        
+        #timer {
+            position: absolute;
+            width: 220px;
+            height: 64px;
+            left: 33em;
+            top: 150px;
+            text-align: center;
+            padding-left: 8px;
+            padding-top: 10px;
+            border: thin;
+            border-color: #F00;
+            border-style: dotted;
+        }
+        
+        #calendar {
+            position: absolute;
+            width: 220px;
+            height: 200px;
+            left: 33em;
+            top: 325px;
+            text-align: center;
+            padding-left: 8px;
+            padding-top: 10px;
+            border: thin;
+            border-color: #F00;
+            border-style: dotted;
+        }
+        
+        #image {
+            position: absolute;
+            width: 220px;
+            height: 75px;
+            left: 33em;
+            top: 230px;
+            text-align: center;
+            padding-left: 8px;
+            padding-top: 10px;
+            border: thin;
+            border-color: #F00;
+            border-style: dotted;
+        }
+        
+        #info {
+            position: absolute;
+            width: 220px;
+            height: 75px;
+            left: 33em;
+            top: 59px;
+            text-align: center;
+            padding-left: 8px;
+            padding-top: 10px;
+            border: thin;
+            border-color: #F00;
+            border-style: dotted;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Đăng ký khám bệnh - hồ sơ nhận bệnh</h2>
+    <div class="container">
+
+        <form id="mainForm">
+            <div class="form" id="general">
+                <div class="form_line_error">
+                    <label for="name"><span class="form_label">Họ và tên</span></label>
+                    <input id="name" name="name" size="35">
+                    </input>
+                </div>
+                <div class="form_line">
+                    <label for="cmnd"><span class="form_label">CMND</span></label>
+                    <input id="cmnd" name="cmnd" size="25">
+                    </input>
+                </div>
+                <div class="form_line">
+                    <label for="gender"><span class="form_label">Giới tính</span></label>
+                    <select id="gender" name="gender">
+              <option>Nam</option>
+              <option selected="selected">Nữ</option>
+            </select>
+                </div>
+                <div class="form_line">
+                    <label for="year"><span class="form_label">Năm sinh</span></label>
+                    <select id="year" name="year">
+              <option>1922</option>
+              <option selected="selected">1923</option>
+            </select>
+                </div>
+                <div class="form_line">
+                    <span class="form_label">Tuổi:</span>
+                    <span id="age">20</span>
+                </div>
+            </div>
+            <div class="form" id="test">
+                <div>Xét nghiệm <button id="all" type="button">Chọn tất cả</button></div>
+                <div>
+                    <div style="float:left; text-align: right; ">
+                        <div>Danh sách xét nghiệm <br/></div>
+                        <div>
+                            <select id="allTests" name="allTests" multiple="multiple" size="15">
+                  <option>Viêm gan (10 phút)</option>
+                  <option selected="selected">Máu (2 phút)</option>
+                </select>
+                        </div>
+                    </div>
+                    <div style="float:left; margin-left:1em; margin-right:1em;">
+                        <div style="height:1.4em;"></div>
+                        <div>
+                            <button id="toLeft" type="button">-&gt;</button><br/>
+                            <button id="toRight" type="button">&lt;-</button>
+                        </div>
+                    </div>
+                    <div style="float:left ;text-align: left;">
+                        <div>Xét nghiệm chọn (theo thứ tự)</div>
+                        <div>
+                            <div style="float:left;">
+                                <select id="selectedTests" name="selectedTests" multiple="multiple" size="15">
+                  <option>Siêu âm bụng dưới (5 phút)</option>
+                  <option selected="selected">X Quang ngực (10 phút)</option>
+                </select>
+                            </div>
+                            <div style="float:left; text-align: left;">
+                                <button id="moveUp" type="button">Lên</button><br/>
+                                <button id="moveDown" type="button">Xuống</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:left; padding-top: 1em;">
+                <div class="form_line">
+                    <span class="form_label">Thời gian xét nghiệm:</span>
+                    <span id="age">20 phút</span>
+                </div>
+            </div>
+            <div class="form_footer" id="buttons">
+                <div>
+                    <button id="submitButton" type="submit">Đăng ký</button>
+                </div>
+            </div>
+            <div id="timer">Hiển thị đồng hồ<br/>
+                <img src="images/clock.png" />
+            </div>
+            <div id="calendar">Vẽ tam giác <br/>
+                <input id="n" name="n" size="10" value="3<=n<=6">
+                <input type="button" id="Ve" name="Ve" value="Vẽ">
+                <div id="ve"><img src="images/tamgiac.png" width="150" /></div>
+            </div>
+            <div id="image"><br/>
+                <img src="images/12dieu.gif" width="200" />
+            </div>
+            <div id="info">Thông tin cá nhân<br/>
+                <span class="form_label">Họ tên: Nguyễn Văn A</span>
+                <span class="form_label">MSSV: 123456789</span>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title> Vẽ Tam giác số</title>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <form name="frmVe">
+            <p>
+                <input type="text" name="txtChieuCao" id="textfield" size= "15"/>
+                <input type="button" name="button1" id="button1" value="Tam giác cân" onClick="VeTamGiacCan();"/>
+                <input type="button" name="button2" id="button2" value="Tam giác vuông" onClick="VeTamGiacVuong();"/>
+                <br/>
+                <i>Chiều cao n nguyên dương và 0  n = 10</i> 
+            </p>
+            <div id = "vungve"> Vùng vẽ hình</div>
+            <div id ="vungtinh">Vùng tính toán</div>
+        </form>
+        <script>
+            function VeTamGiacCan(){
+                var n =document.getElementById('textfield').value;
+                var count=0;
+                s='<table style="border-collapse: collapse;" border="1 ;width=100px;"><tbody>';
+                
+                    
+                for(let i=0;i<n;i++)
+                {
+                    s+='<tr>';
+                    for(let j=0;j<(2*n+1)-2;j++) 
+                    {   
+                         //tam giac can nguoc
+                        // if (j < i || j >= n * 2 - i - 1) {
+                        //     s+='<td style="border:1px solid black;width:100px;">&nbsp;</td>'
+                        // } 
+                        // else 
+                        // {
+                        //     s+='<td style="border:1px solid black;width:100px;">&nbsp;'+(count++)+'</td>'
+
+                        // }
+                        if (j >= n - 1 - i && j <= n - 1 + i) //tam giac can 
+                        {
+                            s += '<td style="border:1px solid black;width:100px;">&nbsp;' + (count++) + '</td>';
+                            
+                        } else {
+                            s += '<td style="border:1px solid black;width:100px;">&nbsp;</td>';
+                        }
+                        
+                    }
+                    
+                    s+='</tr>';   
+                }
+                s+= '</tbody></table>'
+                document.getElementById('vungve').innerHTML =s;
+            }
+            function VeTamGiacVuong(){
+                var n =document.getElementById('textfield').value;
+                var count=0;
+                s='<table style="border-collapse: collapse;" border="1 ;width:100px;"><tbody>';
+                for(let i=0;i<n;i++)
+                {
+                    s+='<tr>';
+                    for(let j=0;j<i+1;j++)
+                    {   
+                        if(j<i+1)
+                        {
+                            s+='<td style="border:1px solid black;width:100px;">&nbsp;'+(count++)+'</td>'
+                            
+                        }
+
+                    }
+                    
+                    s+='</tr>';    
+                }    
+                s+= '</tbody></table>'
+                document.getElementById('vungve').innerHTML =s;
+
+            }
+            
+        </script>
+    </body>
+</htmlh>
