@@ -17,7 +17,7 @@ class State {
 
     @Override
     public String toString() {
-        return Arrays.toString(state);
+        return Arrays.toString(state) + "_f(S" + g + ")=" + f;
     }
 
     @Override
@@ -35,7 +35,7 @@ class State {
 }
 
 public class EightPuzzle {
-    static int[] goalState = {1, 2, 3, 8, 0, 4, 7, 6, 5}; // Chuyển goalState thành mảng 1 chiều
+    static int[] goalState = {1, 2, 3, 8, 0, 4, 7, 6, 5};
 
     static int heuristic(int[] state) {
         int misplaced = 0;
@@ -60,7 +60,7 @@ public class EightPuzzle {
         for (int[] move : moves) {
             int newIndex = zeroIndex + move[0] * 3 + move[1];
             if (newIndex >= 0 && newIndex < state.length) {
-                int[] newState = state.clone(); // Copy array correctly
+                int[] newState = state.clone();
                 newState[zeroIndex] = newState[newIndex];
                 newState[newIndex] = 0;
                 successors.add(newState);
@@ -69,96 +69,64 @@ public class EightPuzzle {
         return successors;
     }
 
-    static void printOpenList(List<State> openList, Map<State, Integer> stateNumberMap) {
+    static void printOpenList(List<State> openList) {
         System.out.println("OPEN: [");
         if (openList.isEmpty()) {
             System.out.println("]\n");
             return;
         }
         for (State state : openList) {
-            System.out.println("\t" + Arrays.toString(state.state) + "_f(S" + stateNumberMap.get(state) + ")=" +
-                    state.f + ",");
+            System.out.println("\t" + state + ",");
         }
         System.out.println("]\n");
     }
 
-    static void printClosedSet(Set<State> closedSet, Map<State, Integer> stateNumberMap) {
+    static void printClosedSet(Set<State> closedSet) {
         System.out.println("CLOSE: [");
         if (closedSet.isEmpty()) {
             System.out.println("]\n");
             return;
         }
         for (State state : closedSet) {
-            System.out.println("\t" + Arrays.toString(state.state) + "_f(S" + (state.equals(closedSet.iterator().next()) ? 0 : stateNumberMap.get(state)) + ")=" +
-                    state.f + ",");
+            System.out.println("\t" + state + ",");
         }
         System.out.println("]\n");
     }
 
     static int[][] aStar(int[] initial) {
         PriorityQueue<State> openList = new PriorityQueue<>(Comparator.comparingInt(s -> s.f));
-        Map<State, Integer> stateNumberMap = new HashMap<>();
         Set<State> closedSet = new HashSet<>();
 
         State initialState = new State(initial, 0, heuristic(initial));
-        openList.add(initialState); // Thêm trạng thái ban đầu vào openList
-        stateNumberMap.put(initialState, 0); // Đánh số trạng thái ban đầu và thêm vào stateNumberMap với số thứ tự là 0
-
+        openList.add(initialState);
         int stepNumber = 0;
-        int stateNumber = 0;
+
         while (!openList.isEmpty()) {
             System.out.println("**Step: " + (stepNumber + 1));
             State currentState = openList.poll();
             int[] state = currentState.state;
-            System.out.println("Current State: ");
-            System.out.println(Arrays.toString(state));
+            System.out.println("Current State: " + currentState);
             closedSet.add(currentState);
             System.out.println("Next State: \n");
             List<int[]> successors = generateSuccessors(state);
-            List<State> tempStates = new ArrayList<>(); // Danh sách tạm thời
 
             for (int[] successor : successors) {
                 int gSuccessor = currentState.g + 1;
                 int fSuccessor = gSuccessor + heuristic(successor);
                 State nextState = new State(successor, gSuccessor, fSuccessor);
-                tempStates.add(nextState); // Thêm vào danh sách tạm thời
+                if (!closedSet.contains(nextState)) {
+                    openList.add(nextState);
+                }
             }
 
-            // Sắp xếp danh sách tạm thời dựa trên giá trị f của các trạng thái
-            tempStates.sort(Comparator.comparingInt(State::getF));
-
-            // Đánh số các trạng thái trong danh sách tạm thời
-            for (State nextState : tempStates) {
-                stateNumber++;
-                stateNumberMap.put(nextState, stateNumber);
-            }
-
-            // Thêm các trạng thái đã được đánh số vào openList
-            openList.addAll(tempStates);
-
-            // In ra thông tin các trạng thái đã được sắp xếp và đánh số
-            for (State nextState : tempStates) {
-                System.out.println("\t" + Arrays.toString(nextState.state) + "_f(S" + stateNumberMap.get(nextState) + ")=" + nextState.f + ",");
-            }
-
-            if (stateNumber == 0) {
-                System.out.println("OPEN: [");
-                System.out.println("\t" + Arrays.toString(currentState.state) + "_f(S" + (stateNumber + 1) + ")=" +
-                        currentState.g + "+" + currentState.f + "=" + currentState.f + ",");
-                System.out.println("]\n");
-                System.out.println("CLOSE: []\n");
-            } else {
-                printOpenList(new ArrayList<>(openList), stateNumberMap);
-                printClosedSet(closedSet, stateNumberMap);
-            }
+            printOpenList(new ArrayList<>(openList));
+            printClosedSet(closedSet);
 
             if (Arrays.equals(state, goalState)) {
                 return to2DArray(state);
             }
-            closedSet.add(currentState);
             stepNumber++;
         }
-
         return null;
     }
 
